@@ -2,7 +2,7 @@
 
 **Features**
 
-*Can add task, edit, delete, clear, and mark as complete*
+*Can add task, edit, delete, clear, and mark as complete\*
 *Dark mode switch option*
 
 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="html light-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Do It Now!">
+    <meta name="keywords" content="todo, list, todolist">
+    <meta name="robots" content="index,follow">
+
+    <!-- connecting style -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- google font -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/11b9cdf6db.js" crossorigin="anonymous"></script>
+
+    <!-- connecting js -->
+    <script defer src="script.js"></script>
+
+    <title>Todo</title>
+</head>
+<body onload="document.body.style.opacity=1" >
+
+    <div class="container-Body ">
+ 
+        <div class="container uni-padding">
+
+
+            <div class="header">
+
+                <div class="leftheading">
+
+                    <span class="head-text head-day"><p>Today</p></span>
+                    <span  class="head-text head-date"><p class="date">Fri 6 Oct</p></span>
+    
+
+                </div>
+               
+                
+                <div class="rightheading">
+                    <input class="todo-btn toClear" type="submit" value="Clear all" onclick="event.preventDefault()" >
+
+                    <div class="night_mode">
+
+                        <i class="fa-solid fa-moon darkMoon"></i>
+                        <i class="fa-regular fa-moon hidden lightMoon"></i>
+
+
+                    </div>
+                  
+                </div>
+                
+            </div>
+
+            <div class="content">
+
+               
+                    <button class="addtask">
+                        <i class="fa-solid fa-plus"></i>
+                        Add task
+                    </button>
+
+              
+              
+
+                <!-- for add todo input container -->
+               <div class="input_container hidden " >
+
+                <form action="#" class="input_form" >
+                    <input id = "headInput" class="text_field input_heading" type="text" placeholder="Task Name">
+                    <input id="headDesc" class="text_field input_description" type="text" placeholder="Description"/>
+
+                    <div class="buttons">
+                       <input class="todo-add todo-btn "  type="submit" value="Add" onclick="event.preventDefault()">
+                       <input class="todo-cancel todo-btn " type="submit" value="Cancel" onclick="event.preventDefault()">
+                       <input class="todo-delete todo-btn hidden" type="submit" value="Delete" onclick="event.preventDefault()" >
+                    </div>
+                    
+                </form>
+
+               </div>
+            </div>
+  <!-- for container of todolist..list container -->
+           
+         <div class="list-container">
+
+              
+<!-- 
+            <div class="each-list">
+
+                <div class="icons">
+
+                    <div class="check-list">
+                        <i class="fa-regular fa-circle"></i>  
+                    </div>
+    
+                    <div class="edit-list check-list hidden">
+                        <i class="fa-regular fa-pen-to-square"></i>    
+                    </div>
+                </div>
+
+                <div class="text-list-box">
+                    <div class="list-title">
+                        <div class="text-content list-text-title">
+                            title
+
+                        </div>
+
+                    </div>
+                    <div class="list-description">
+                        <div class="text-content list-text-desc">
+                            description
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+               -->
+
+               
+               </div>   
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+    
+</body>
+</html>

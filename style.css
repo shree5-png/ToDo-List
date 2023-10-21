@@ -1,3 +1,7 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+
 .light-theme{
 
     --background: rgb(231, 228, 228);
@@ -33,10 +37,7 @@ body{
     margin:0px;
     width:100%;
     -webkit-tap-highlight-color: transparent; 
-
-     /* font-family: 'Gabarito', sans-serif; */
-     font-family: 'Merriweather', sans-serif;
-     /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Merriweather', sans-serif;
     font-size:18px;
     background-color: var(--background);
     opacity: 0;
@@ -53,7 +54,6 @@ body{
 }
 
 /* containerbody */
-
 
 .container-Body{
   display:flex;
@@ -309,6 +309,8 @@ body{
 .rightheading{
     display: flex;
 }
+
+/* Night mode */
 .night_mode{
 
     width:30px;
@@ -319,6 +321,31 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+}
+
+
+/* watermark */
+
+.footContainer{
+
+   position:fixed;
+    bottom:10px;
+    left:10px;
+    font-family:  sans-serif;
+}
+
+.footContainer a{
+
+    text-decoration: none;
+    color:var(--text);
+    font-size: 1.8vh;
+    
+}
+
+
+.footContainer a:hover{
+
+    color:var(--title);
 }
 
 .night_mode:hover{

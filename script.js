@@ -21,8 +21,13 @@ const Headdesc = document.querySelector('#headDesc');
 const container_Body = document.querySelector('.container-Body');
 
 
-//NOTE : DATE FORMAT 
-//Date updater in navigation bar
+
+/**
+ * NOTE : DATE FORMAT 
+ * Date updater in navigation bar
+ */
+
+
 const dateFormat= function(){
 
     const calendar = new Date();
@@ -43,6 +48,9 @@ dateFormat();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * LOCAL STORAGE
+ */
 
 
 //NOTE TO GET ITEMS FROM LOCAL STORAGE
@@ -129,6 +137,9 @@ if(status==="true"){
 };
 
 
+/**
+ * INSIDE THE EDIT SECTION
+ */
 function clickonAddEdit(){
 
     // console.log("Editing mode");
@@ -374,7 +385,10 @@ onCLickCancel();
 
 
 
-
+/**
+ * to check the circle
+ * 
+ */
 function checkedSolidCircle(element){
 
     element.querySelector('.text-content').style.cssText="color:var(--desc); text-decoration:line-through";
@@ -391,6 +405,9 @@ function checkedSolidCircle(element){
 
 }
 
+/**
+ * to uncheck the circle
+ */
 function uncheckedSolidCircle(element){
 
     element.querySelector('.text-content').style.cssText="color:var(--title); text-decoration:none";
@@ -406,6 +423,9 @@ function uncheckedSolidCircle(element){
 }
 
 
+/**
+ * toggle circle
+ */
 function toggleSolidCircle(element){
     
   
@@ -445,6 +465,7 @@ function solidCircle() {
         }
     });
 }
+
 
 
 function toClearTask(){

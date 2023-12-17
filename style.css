@@ -267,6 +267,15 @@ body{
 
 .edit-list{
 
+    padding:5px 10px 1px 10px;
+    margin-top: 2px;
+    height:25px;
+    width:25px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:var(--title);
+
     color:var(--text);
     margin-top:4px;
     padding-top:0px;

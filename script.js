@@ -55,7 +55,6 @@ function getItems(){
 
 };
 
-// console.log(list);
 
 
 //NOTE TO SET ITEMS TO THE LOCAL STORAGE
@@ -68,7 +67,6 @@ function setItems(items){
 //NOTE TO STORE THE DATA IN LOCAL STORAGE
 function storage(ttl = '',desc= '', isChecked = false){
 
-    // console.log(ttl,desc);
 
     list.push({
         title: ttl ,
@@ -116,16 +114,24 @@ function indexTransfer(each_list, element){
 
 };
 
-function checkCircleIndex(cIndex){
+function checkCircleIndex(cIndex,status){
 
+if(status==="false"){
+
+    list[cIndex].checked = false;
+    setItems(list);
+
+}
+if(status==="true"){
     list[cIndex].checked = true;
     setItems(list);
+}
 };
 
 
 function clickonAddEdit(){
 
-    console.log("Editing mode");
+    // console.log("Editing mode");
     if(input_container.querySelector('#headInput').value==='') return;
 
     const newTitle = input_container.querySelector('#headInput').value;
@@ -134,7 +140,7 @@ function clickonAddEdit(){
 
     toClearInputField();
     OpenCloseInputContainer('close');
-    solidCircle();
+    // solidCircle();
 
 }
 
@@ -151,7 +157,7 @@ const ClickOnAdd = function(){
           storage(title,description)
           toClearInputField();
           OpenCloseInputContainer('close');
-          solidCircle();
+        //   solidCircle();
 
 };
 
@@ -239,7 +245,7 @@ const showTask = function(mapDataTitle, mapDataDescription, ifchecked= false){
 
        
 
-        <div class="edit-list check-list hidden">
+        <div class="edit-list  hidden">
             <i class="fa-regular fa-pen-to-square"></i>    
         </div>
     </div>
@@ -269,7 +275,10 @@ const showTask = function(mapDataTitle, mapDataDescription, ifchecked= false){
     list_container.querySelectorAll('.each-list').forEach(each=>{
 
        if( each.getAttribute("checked")==="true"){
-        insideSolidCircle(each);
+        // insideSolidCircle(each);
+        checkedSolidCircle(each);
+       }else{
+        uncheckedSolidCircle(each);
        }
     })
     
@@ -299,7 +308,7 @@ const addHandlerToggleEdit = function(e){
 
     element.addEventListener('mouseover',addHandlerToggleEdit);
     element.addEventListener('mouseout',addHandlerToggleEdit);
-    solidCircle();
+    // solidCircle();
 
 
     
@@ -309,6 +318,7 @@ function onClickEdit(){
 
     element.querySelector(".edit-list").addEventListener('click',function(e){
 
+
         const index = Array.from(each_list).indexOf(element);
 
         indexTransfer(each_list, element);
@@ -317,10 +327,8 @@ function onClickEdit(){
         const deleteBtn= input_container.querySelector('.todo-delete');
         deleteBtn.classList.remove('hidden');
 
-        
         input_container.querySelector('#headInput').value =element.querySelector('.list-text-title').textContent.trim();
         input_container.querySelector('#headDesc').value =element.querySelector('.list-text-desc').textContent.trim();
-
 
     function addEditHandler(){
         input_container.querySelector('.todo-add').removeEventListener("click",  ClickOnAdd);
@@ -361,82 +369,124 @@ function onCLickCancel(){
 onCLickCancel();
 
 
-//NOTE calling the refersh list that calls the show task
-refereshList();
 
-function insideSolidCircle(element){
+///////////////////////////
+
+
+
+
+function checkedSolidCircle(element){
+
+    element.querySelector('.text-content').style.cssText="color:var(--desc); text-decoration:line-through";
+    element.querySelector('.list-text-desc').style.cssText="color: rgba(183, 183, 183, 0.521)";
+
   
+    element.querySelector('.fa-solid').classList.remove('hidden');
+    element.querySelector('.fa-regular').classList.add('hidden');
+
+ 
+    const each_list= document.querySelectorAll('.each-list');
+    const solidIndex = Array.from(each_list).indexOf(element);
+    checkCircleIndex(solidIndex,"true");
+
+}
+
+function uncheckedSolidCircle(element){
+
+    element.querySelector('.text-content').style.cssText="color:var(--title); text-decoration:none";
+    element.querySelector('.list-text-desc').style.cssText="color:var(--desc)";
+
+    element.querySelector('.fa-solid').classList.add('hidden');
+    element.querySelector('.fa-regular').classList.remove('hidden');
+
+    const each_list= document.querySelectorAll('.each-list');
+    const solidIndex = Array.from(each_list).indexOf(element);
+    checkCircleIndex(solidIndex,"false");
+
+}
 
 
-       element.querySelector('.text-content').style.cssText="color:var(--desc); text-decoration:line-through";
-       element.querySelector('.list-text-desc').style.cssText="color: rgba(183, 183, 183, 0.521)";
-
-      
-       //  e.currentTarget.querySelector('.fa-regular').classList.add('hidden');
-    //    element.querySelector('.edit-list').style.display='none';
-       element.querySelector('.fa-solid').classList.remove('hidden');
-       element.querySelector('.fa-regular').classList.add('hidden');
-
+function toggleSolidCircle(element){
     
-       const each_list= document.querySelectorAll('.each-list');
-       const solidIndex = Array.from(each_list).indexOf(element);
-       checkCircleIndex(solidIndex);
-   
-   }
+  
+    if( element.getAttribute("checked") === "true"){
 
+        element.setAttribute("checked","false");
+        uncheckedSolidCircle(element);
 
+    }
+    else if( element.getAttribute("checked")=== "false"){
+
+        checkedSolidCircle(element);
+        element.setAttribute("checked","true");
+
+    }
+
+}
 
 
  
-function solidCircle(){
+////////////////////////
+function solidCircle() {
+    list_container.addEventListener('click', function (e) {
 
-    const each_list= document.querySelectorAll('.each-list');
-    each_list.forEach(element=>{
+        const checkList = e.target.closest('.check-list');
 
-    element.querySelector('.check-list').addEventListener('click',function(e){
+        
+        // if (e.target.classList.contains('edit-list', 'fa-pen-to-square')) {
+        //     return;
+        // }
 
-    insideSolidCircle(element);
+        if (checkList) {
 
-    })
-})
-};
+            const element = checkList.closest('.each-list');
 
-solidCircle();
+                toggleSolidCircle(element);  
+        }
+    });
+}
 
 
 function toClearTask(){
-
     
-document.querySelector('.toClear').addEventListener('click',function(e){
-
-    e.preventDefault();
+    
+    document.querySelector('.toClear').addEventListener('click',function(e){
+        
+        e.preventDefault();
     // list = [];
     list.length=0;
     setItems(list);
     refereshList();
-
+    
 })
 
 }
- 
+
 toClearTask();
 
 
 
 function darkMode(){
-
+    
     document.querySelector('.night_mode').addEventListener("click",function(e){
         e.preventDefault();
-
-       const html=  document.querySelector('.html');
-       const lightMoon = document.querySelector('.lightMoon');
-       const darkMoon = document.querySelector('.darkMoon');
+        
+        const html=  document.querySelector('.html');
+        const lightMoon = document.querySelector('.lightMoon');
+        const darkMoon = document.querySelector('.darkMoon');
         html.classList.toggle('dark-theme');
         html.classList.toggle('light-theme');
-
+        
         lightMoon.classList.toggle('hidden');
         darkMoon.classList.toggle('hidden');
     })
 }
 
+
 darkMode();
+solidCircle();
+
+
+
+//NOTE calling the refersh list that calls the show task
+refereshList();

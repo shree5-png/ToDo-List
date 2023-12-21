@@ -411,3 +411,29 @@ body{
   /* input{
     color:var(--placeholder)
   } */
+
+
+  @media only screen and (max-width:392px){
+
+    .buttons{
+        display: flex;
+        justify-content:space-evenly;
+        align-items: center;
+        padding-right:0px;
+        padding-left:0px ;
+        
+    }
+    .todo-btn{
+
+        width:70px;
+        font-size:12px;
+        margin:0px;
+    }
+
+    .input_container{
+       
+         width:100%;
+       
+         
+     }
+  }
